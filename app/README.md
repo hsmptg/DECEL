@@ -27,6 +27,8 @@ export default App
 
 - http://localhost:5173/ 
 - create ```.gitignore``` file and add ```node_modules``` to it
+
+## Docker
 - create ```.dockerignore``` file and add ```node_modules``` to it
 - create ```Dockerfile``` file
 ```
@@ -65,11 +67,24 @@ services:
 - [The complete guide to WebSockets with React](https://ably.com/blog/websockets-react-tutorial)
 - [How to Use MQTT in The React Project](https://www.emqx.com/en/blog/how-to-use-mqtt-in-react)
 - [react-chartjs-2](https://react-chartjs-2.js.org/)
+- [How to Upload Files in Node.js Using Express and Multer](https://www.youtube.com/watch?v=i8yxx6V9UdM)
+- [Open file select dialogue using React JS](https://codepen.io/rkotze/pen/zjRXYr)
+- [Opening File Dialog Programmatically](https://react-dropzone.js.org/#!/Opening%20File%20Dialog%20Programmatically)
+- [react-dropzone](https://react-dropzone.js.org/)
+- [Dockerize React applications with Nginx](https://medium.com/@alinaseri/dockerize-react-applications-with-nginx-17f752deb54)
+https://vitejs.dev/guide/static-deploy.html
+- [Dockerizing React Application Built with Vite: A Simple Guide](https://thedkpatel.medium.com/dockerizing-react-application-built-with-vite-a-simple-guide-4c41eb09defa)
+
+Install multer:
+```
+npm install express multer
+```
 
 Install axios:
 ```
 npm i axios
 ```
+
 Install Material UI
 ```
 npm install @mui/material @emotion/react @emotion/styled
@@ -77,3 +92,17 @@ npm install @mui/icons-material
 ```
 
 [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons)
+
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+nginx.conf
+
+server {
+  listen 80;
+  location / {
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+    try_files $uri $uri/ /index.html =404;
+  }
+}

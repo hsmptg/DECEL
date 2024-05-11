@@ -48,3 +48,6 @@ services:
       - 3001:3000
 ```
 - test goint to http://10.0.5.111:3001
+
+## Postman
+Install Postman extension
