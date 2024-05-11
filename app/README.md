@@ -20,13 +20,11 @@ function App() {
 export default App
 ```
 - edit ```index.html``` from "Vite + React" to "DECEL"
-- delete assets folder
-- empty index.css and App.css
-- ```npm install```
-- run the server: ```npm run dev```
-
-- http://localhost:5173/ 
-- create ```.gitignore``` file and add ```node_modules``` to it
+- delete ```assets``` folder
+- empty ```index.css``` and ```App.css```
+- install dependencies: ```npm install```
+- run the local web server: ```npm run dev```
+- test going to: http://localhost:5173/ 
 
 ## Docker
 - create ```.dockerignore``` file and add ```node_modules``` to it
@@ -43,11 +41,14 @@ COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
-- run Docker Desktop or do it from de CLI
-- create image running ```docker build . -t decel_app:latest```
-- ```docker image tag decel_app hsmptg/decel_app```
-- ```docker image push docker.io/hsmptg/decel_app:latest```
-- at Portainer create stack decel_app with
+- run Docker Desktop
+- create and push an image to Docker Hub, or do it using cli
+    - ```docker build . -t decel_app:latest```
+    - ```docker image tag decel_app hsmptg/decel_app```
+    - ```docker image push docker.io/hsmptg/decel_app:latest```
+
+## Portainer
+- create stack decel_app with:
 ```
 version: '3'
 services:
@@ -56,9 +57,9 @@ services:
     image: docker.io/hsmptg/decel_app:latest
     restart: always
     ports:
-      - 8123:80
+      - 8124:80
 ```
-- test goint to http://10.0.5.111:8123
+- test going to http://10.0.5.111:8124
 
 ## To see
 - [Axios](https://axios-http.com/)
@@ -97,7 +98,7 @@ FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 nginx.conf
-
+```
 server {
   listen 80;
   location / {
@@ -106,3 +107,4 @@ server {
     try_files $uri $uri/ /index.html =404;
   }
 }
+```

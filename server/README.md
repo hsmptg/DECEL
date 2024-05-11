@@ -1,5 +1,6 @@
 ## Server
 - select ```server``` folder and choose ```Open in integrated Terminal```
+- create ```.gitignore``` file and add ```node_modules``` to it
 - execute ```npm init -y```
 - edit packages.json replacing ```index.js``` by ```server.js```
 - install nodemon running ```npm install --save-dev nodemon```
@@ -20,7 +21,9 @@ app.listen(port, () => {
 });
 ```
 - run the server using nodemon: ```npm run dev```
-- create ```.gitignore``` file and add ```node_modules``` to it
+- test going to http://localhost:3000
+
+## Docker
 - create ```.dockerignore``` file and add ```node_modules``` to it
 - create ```Dockerfile``` file
 ```
@@ -32,11 +35,14 @@ COPY . .
 EXPOSE 3000
 CMD [ "npm", "start" ]
 ```
-- run Docker Desktop or do it from de CLI
-- create image running ```docker build . -t decel_server:latest```
-- ```docker image tag decel_server hsmptg/decel_server```
-- ```docker image push docker.io/hsmptg/decel_server:latest```
-- at Portainer create stack decel_server with
+- run Docker Desktop
+- create and push an image to Docker Hub, or do it using cli
+    - ```docker build . -t decel_server:latest```
+    - ```docker image tag decel_server hsmptg/decel_server```
+    - ```docker image push docker.io/hsmptg/decel_server:latest```
+
+## Portainer
+- create stack decel_server with
 ```
 version: '3'
 services:
@@ -47,7 +53,7 @@ services:
     ports:
       - 3001:3000
 ```
-- test goint to http://10.0.5.111:3001
+- test going to http://10.0.5.111:3001
 
 ## Postman
 Install Postman extension
