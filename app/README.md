@@ -46,6 +46,9 @@ CMD ["nginx", "-g", "daemon off;"]
     - ```docker build . -t decel_app:latest```
     - ```docker image tag decel_app hsmptg/decel_app```
     - ```docker image push docker.io/hsmptg/decel_app:latest```
+- to arm64:
+    - ```docker buildx build --platform linux/arm64 --tag hsmptg/decel_app .```
+    - ```docker image push docker.io/hsmptg/decel_app:latest```
 
 ## Portainer
 - create stack decel_app with:
